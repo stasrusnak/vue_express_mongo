@@ -7,7 +7,7 @@ const connectUrl = require("../../../config.json")
 // Get Posts
 router.get("/", async (req, res) => {
   const posts = await loadPostsCollection();
-  res.send(await posts.find({}).toArray());
+  res.send(await posts.find().sort({PTS:-1}) .toArray());
 });
 
 // Add Post
