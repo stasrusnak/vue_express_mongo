@@ -5,9 +5,7 @@ const url = "api/posts/";
 /* eslint-disable no-async-promise-executor */
 
 class PlayerService {
-  // Get Posts
   static getPosts() {
-
     return new Promise(async (resolve, reject) => {
       try {
         const res = await axios.get(url);

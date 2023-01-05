@@ -7,7 +7,16 @@ const connectUrl = require("../../../config.json")
 // Get Posts
 router.get("/", async (req, res) => {
   const posts = await loadPostsCollection();
-  res.send(await posts.find().sort({PTS:-1}) .toArray());
+  // res.send(await posts.find().sort({PTS:-1}) .toArray());
+  res.send(await posts.aggregate([
+    {
+      $setWindowFields: {
+        sortBy: {PTS: -1},
+        output: {rank: {$rank: {}}}
+      }
+    },
+  ]).toArray());
+
 });
 
 // Add Post
@@ -28,7 +37,7 @@ router.post("/", async (req, res) => {
 // Delete Post
 router.delete("/:id", async (req, res) => {
   const posts = await loadPostsCollection();
-  await posts.deleteOne({ _id: new mongodb.ObjectID(req.params.id) });
+  await posts.deleteOne({_id: new mongodb.ObjectID(req.params.id)});
   res.status(200).send();
 });
 
@@ -36,8 +45,8 @@ router.delete("/:id", async (req, res) => {
 router.put("/:id", async (req, res) => {
   const posts = await loadPostsCollection();
   await posts.updateOne(
-    { _id: new mongodb.ObjectID(req.params.id) },
-    { $set: { likes: req.body.newLikes } }
+    {_id: new mongodb.ObjectID(req.params.id)},
+    {$set: {likes: req.body.newLikes}}
   );
   res.status(200).send();
 });

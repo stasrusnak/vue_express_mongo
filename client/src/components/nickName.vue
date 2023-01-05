@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div style="display:flex; justify-content: center;" v-html="html" v-if="html" :key="this.data.nick"/>
+        <div style="display:flex;" v-html="html" v-if="html" :key="this.data.nick"/>
         <span v-else>{{this.data.nick}}</span>
     </div>
 </template>
