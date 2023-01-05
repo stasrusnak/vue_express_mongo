@@ -2,7 +2,9 @@ const express = require("express");
 const mongodb = require("mongodb");
 const router = express.Router();
 
-const connectUrl = require("../../../config.json")
+ const  connectUrl = process.env.API_TOKEN;
+
+ console.log(connectUrl)
 
 // Get Posts
 router.get("/", async (req, res) => {
@@ -53,7 +55,7 @@ router.put("/:id", async (req, res) => {
 
 async function loadPostsCollection() {
   const client = await mongodb.MongoClient.connect(
-    connectUrl.mongo_url,
+    connectUrl,
     {
       useNewUrlParser: true,
     }

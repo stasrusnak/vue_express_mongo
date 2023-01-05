@@ -1,6 +1,7 @@
 /client/node_modules
 node_modules
-
+.env
+env
 # Created by .ignore support plugin (hsz.mobi)
 ### Node template
 # Logs
@@ -103,3 +104,5 @@ api/server/keys/dev.js
 
 
 config.json
+
+.env
