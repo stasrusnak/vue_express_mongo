@@ -7,8 +7,12 @@
   ],
   "routes": [
     {
-      "src": "server/(.*)",
+      "src": "/server/(.*)",
       "dest": "index.js"
+    },
+    {
+      "src": "/server/routes/api/posts",
+      "dest": "server/routes/api/posts.js"
     }
   ]
 }
