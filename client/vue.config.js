@@ -6,7 +6,7 @@ module.exports = {
   devServer: {
     proxy: {
       '/api': {
-        target: process.env.VUE_APP_HOST
+        target: 'vue-express-mongo-737izh4uh-stasrusnak.vercel.app'
       }
     }
   }
